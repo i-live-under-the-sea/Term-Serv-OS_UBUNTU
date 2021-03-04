@@ -5,3 +5,5 @@ and I made a online version of it for servers.
 
 I have a server with ubuntu on it but I can't access it. All I get is the cpanel menu
 so I'm making a ubuntu online-copy for your server.
+
+Im working on it on my desktop rn
