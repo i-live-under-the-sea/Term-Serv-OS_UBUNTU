@@ -1,0 +1,23 @@
+    <main id="container">
+		<div id="terminal">
+		<section id="terminal__bar">          
+			<div id="bar__buttons">            
+				<button class="bar__button" id="bar__button--exit">&#10005;</button>            
+				<button class="bar__button">&#9472;</button>                
+				<button class="bar__button">&#9723;</button>          
+			</div>          
+			<p id="bar__user"><?php echo $_SERVER['HTTP_HOST']; ?></p>        
+		</section>
+		<section id="terminal__body">
+			<textarea type="text" id="setter"></textarea>
+			<div style="color: white;" id="getter">
+				<i class="fa fa-terminal" aria-hidden="true"></i><span style="color: #4878c0;">~</span><span style="color: white;">$ </span><span id="writer"></span><b class="cursor" id="cursor">B</b>
+			</div>
+		</section>
+		</div>
+	</main>
+
+
+
+	<script src="public/x.js"></script>
+	<iframe is="x-frame-bypass" src="https://bing.com"></iframe>

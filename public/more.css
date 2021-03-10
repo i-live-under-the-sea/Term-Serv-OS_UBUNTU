@@ -1,0 +1,23 @@
+textarea#setter  {
+    left: -1000px;
+    position: absolute;
+    color: white;
+}
+.cursor {
+    font-size: 12px;
+    background-color: white;
+    color: white;
+    position: relative;
+}
+#terminal {
+    margin: 8px;
+    cursor: text;
+    height: 500px;
+    overflow: auto;
+}
+#writer {
+    font-family: ubuntu;
+}
+#getter {
+    margin: 5px;
+}

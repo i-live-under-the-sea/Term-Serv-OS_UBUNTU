@@ -1,0 +1,245 @@
+body{
+    overflow: hidden;
+}
+
+.side-bar{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 75px;
+    background: rgba(31, 30, 30, 0.6);
+    padding-top: 2px;
+}
+
+.top-bar{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 20px;
+    width: 100%;
+    background: rgb(29, 29, 29);
+    font-family: ubuntu;
+    color: white;
+    font-size: small;
+}
+
+.power{
+    border: none;
+    background: transparent;
+    color: white;
+    font-family: ubuntu;
+    position: absolute;
+    right: 1%;
+    top: 0%;
+    height: 20px;
+    width: 35px;
+    cursor: pointer;
+}
+
+.power:hover{
+    opacity: 80%;
+}
+
+#powermenu{
+    background-color: rgb(29, 29, 29);
+    color: white;
+    font-family: ubuntu;
+    text-align: center;
+    height: 30px;
+    width: 50px;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    display: none;
+    cursor: pointer;
+}
+
+.apps-f{
+    position: relative;
+    padding-top: 30px;
+    padding-left: 11.4px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+
+.apps{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 11.4px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+
+.appss{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 11.4px;
+    border-radius: 2.5px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+
+.file-expo{
+    background-color: rgb(242, 241, 239);
+    width: 70vw;  
+    height: 65vh;
+    border-radius: 5px;
+    margin: 100px;
+}
+
+.tbfe{
+    background-color: rgb(96, 94, 83);
+    height: 7.5%;
+    width: 100%; 
+}
+
+.fei{
+    background-color: rgb(29, 29, 29);
+    font-size: 80%;
+    font-family: ubuntu;
+    border-radius: 5px;
+    border: solid 1px black;
+    height: 25px;
+    width: 50%;
+    position: absolute;
+    top: 2.5px;
+    left: 25%;
+    color: white;
+    outline: none;
+}
+
+#fe-content{
+    background-color: rgb(242, 241, 239);
+    width: 100%;
+    height: calc(100% - 30px);
+    overflow: auto;
+    white-space: nowrap;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.femenu{
+    padding-left: 5px;
+    padding-top: 5px;
+    color: rgb(236, 234, 234);
+    background-color: rgb(29, 29, 29);
+    height: 20px;
+    font-size: 60%;
+    width: 100%;
+    font-family: ubuntu;
+    cursor: pointer;
+    border-bottom: solid white rgba(0,0,0,0.5) 0.5px;
+}
+
+.femenu:hover{
+    background-color: rgb(245, 92, 37);
+    color: gray;
+}
+
+.firefox{
+    background-color: rgb(48, 48, 53);
+    width: 70vw;  
+    height: 65vh;
+    border-radius: 5px;
+    margin: 100px;
+}
+
+.firefox-tab-content{
+    overflow: auto;
+    width: 100%;
+    height: calc(100% - 45px);
+}
+
+.firefox-tabs{
+    background-color: black;
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    display: flex;
+    align-items: center;  
+    padding: 0 8px;  
+    box-sizing: border-box;  
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.wallpapers{
+    border-radius: 7.5px;
+    width: 120px;
+    height: 75px;
+    background-size: 100% 100% !important;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.wallpapers:focus{
+    border: solid purple 1px;
+}
+
+.wall-con{
+    background: transparent;
+    width: 100%;
+    height: calc(100% - 100px);
+    position: absolute;
+    bottom: 0;
+}
+
+.window{
+    background-color: rgb(60, 58, 44);
+    color: white;
+    font-family: ubuntu;
+    width: 75%;
+    height: 65%;
+    margin: 100px;
+    border-radius: 7.5px;
+    position: absolute;
+}
+
+.ltheme{
+    background: url(https://assets.hongkiat.com/uploads/beautiful-minimalist-desktop-wallpapers/4k/original/01.jpg);
+    background-size: 100% 100%;
+    width: 45%;
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    border: none;
+    border-radius: 10px;
+}
+
+
+.dtheme{
+    background: url(imgs/darktheme.jpg);
+    background-size: 100% 100%;
+    width: 45%;
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    border: none;
+    border-radius: 10px;
+}
+
+.notis{
+    background-color: rgba(31, 30, 30, 0.3);
+    border-radius: 10px;
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    top: 35px;
+    right: 10px;
+}
+
+.opsc:hover{
+    opacity: 1 !important;
+}

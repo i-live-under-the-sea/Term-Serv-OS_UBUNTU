@@ -1,0 +1,89 @@
+body{
+    background-color: rgb(41, 5, 31);
+}
+
+.canvas{
+    height: 400px;
+    width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.icon{
+    height: 78px;
+    width: 75px;
+    text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 18%;
+}
+
+.name{
+    position: absolute;
+    top: 22%;
+    left: 33%;
+}
+
+.pwd{
+    color: rgb(255, 255, 255);
+    opacity: 65%;
+    font-size: 105%;
+    position: absolute;
+    top: 39%;
+    left: 18%;
+}
+
+.txt-pwd{
+    background-color: rgb(40, 40, 40);
+    color: white;
+    font-family: ubuntu;
+    border: solid rgb(31, 31, 31) 1px;
+    border-radius: 5px;
+    padding-left: 6px;
+    width: 70%;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 18%;
+    outline: none;
+    font-size: 130%;
+}
+
+.cancel{
+    background-color: rgb(90, 90, 90);
+    color: white;
+    width: 12.5%;
+    height: 5%;
+    border: none;
+    font-family: ubuntu;
+    border: solid black 0.5px;
+    position: absolute;
+    left: 18%;
+    top: 65%;
+}
+
+.unlock{
+    background-color: rgb(40, 40, 40);
+    color: white;
+    width: 12.5%;
+    height: 5%;
+    border: none;
+    font-family: ubuntu;
+    border: solid black 0.5px;
+    position: absolute;
+    right: 12%;
+    top: 65%;
+}
+
+.error{
+    color: red;
+    text-align: center;
+    font-family: ubuntu;
+    position: fixed; 
+    bottom: 20%;
+    width: 100%;
+    text-align: center;
+}
