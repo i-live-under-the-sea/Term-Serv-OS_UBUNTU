@@ -1,3 +1,144 @@
+function closetab(btn, tab){
+    btn.remove()
+    document.getElementById(tab).remove();
+    setTimeout(function(){var tabs = document.getElementsByClassName("tabs");
+    tabs[0].click()}, 50)
+}
+
+
+function shrink(element){
+    element.style.width = "0px";
+    setTimeout(function(){ element.remove() }, 490);
+}
+
+function notifacation(measage, lin){
+    var main = document.createElement("div");
+    var gid = idmaker("10");
+    main.id = gid;
+    main.style = "-webkit-transition: width 500ms; transition: width 500ms; background-color: rgba(31, 30, 30, 0.3); border-radius: 10px; width: 200px; height: 80px; position: absolute; right: 0%; bottom: 0%;";
+    document.body.appendChild(main)
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://fonts.googleapis.com/icon?family=Material+Icons";
+    document.head.appendChild(link)
+    document.getElementById(gid).innerHTML = `<i style="color: orange; position: absolute; top: 2%; left: 2%;" class="material-icons">warning</i>
+    <button onclick="shrink(this.parentElement)" style="cursor: pointer; background: transparent; border: none; color: rgba(255, 255, 255, 0.9); font-family: ubuntu; position: absolute; top: 2%; right: 2%;">Ignore</button>
+    <br/>
+    <a style="font-size: 80%; color: dodgerblue; position: absolute; bottom: 7.5; left: 5;" target="_blank" href="`+lin+`">`+measage+`</a>
+    `;
+}
+
+function exists(file){
+        var url = file;
+        if (url != "") { 
+            $.ajax({ 
+                url: url, 
+                type: 'HEAD', 
+                error: function()  
+                { 
+                    return false;
+                }, 
+                success: function()  
+                { 
+                    return true
+                } 
+            }); 
+        } else { 
+            return undefined;
+        } 
+}
+
+function detectBrowser() { 
+    if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
+        return 'Opera';
+    } else if(navigator.userAgent.indexOf("Chrome") != -1 ) {
+        return 'Chrome';
+    } else if(navigator.userAgent.indexOf("Safari") != -1) {
+        return 'Safari';
+    } else if(navigator.userAgent.indexOf("Firefox") != -1 ){
+        return 'Firefox';
+    } else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) {
+        return 'IE';//crap
+    } else {
+        return 'Unknown';
+    }
+} 
+
+function ffenter(that, iid){
+    if(event.keyCode == 13){
+        var value = that.value;
+        var frame = document.getElementById(iid);
+        if(value.includes("http")){
+            frame.src = value;
+            that.blur()
+        }else if(value.includes("google.") && value.includes(".google.") == false){
+            frame.src = "https://www.google.com/search?igu=1";
+            that.blur()
+        }else if(value.includes(".")){
+            frame.src = "https://" + value;
+            that.blur()
+        }else{
+            frame.src = "https://www.google.com/search?igu=1&source=&q=" + value;
+            that.blur()
+        }
+    }
+}
+
+function idmaker(length) {
+    var consonants = 'bcdfghjlmnpqrstv',
+        vowels = 'aeiou',
+        rand = function(limit) {
+            return Math.floor(Math.random()*limit);
+        },
+        i, word='', length = parseInt(length,10),
+        consonants = consonants.split(''),
+        vowels = vowels.split('');
+    for (i=0;i<length/2;i++) {
+        var randConsonant = consonants[rand(consonants.length)],
+            randVowel = vowels[rand(vowels.length)];
+        word += (i===0) ? randConsonant.toUpperCase() : randConsonant;
+        word += i*2<length-1 ? randVowel : '';
+    }
+    return word;
+}
+
+function createtab(){
+    document.getElementById("ff-create").remove();
+    var btnid = idmaker(10);
+    var pageid = idmaker(10);
+    var inpid = idmaker(10);
+    var frameid = idmaker(10);
+    document.getElementById("tbs").innerHTML += `<button id="`+btnid+`" onclick="opentab('`+pageid+`', this)" class="tabs"><i onclick="closetab(this.parentElement, '`+pageid+`')" style="color: rgb(121, 120, 121); border-radius: 2.5px; cursor: pointer; position: absolute; width: 17px; text-align: center; top: 20%; right: 7.5%; font-family: arial;" class="refresh">&#10005;</i></button>`;
+    document.getElementById("tbs").innerHTML += `<button onclick="createtab()" id="ff-create">+</button>`;
+    var div = document.createElement("div");
+    div.id = pageid;
+    div.name = "tabs";
+    div.classList = "ff-tab";
+    div.setAttribute("name", "tabs");
+    document.getElementById("ff-content").appendChild(div)
+    document.getElementById(pageid).innerHTML += `
+    <div id="ff-back">
+        <input onkeyup="ffenter(this, '`+frameid+`')" onclick="this.select();" id="`+inpid+`" class="ff-search" placeholder="Search with google or enter address"/>
+        <i onclick="document.getElementById('`+frameid+`').src = document.getElementById('`+frameid+`').src" style="color: rgb(121, 120, 121); border-radius: 2.5px; cursor: pointer; position: absolute; top: 15%; left: 8%;" class="material-icons refresh">refresh</i>
+    </div>
+    <iframe onload="document.getElementById('`+inpid+`').value = this.src" application="yes" is"x-frame-bypass" id="`+frameid+`" style="width: 100%; height: calc(100% - 50px); position: absolute; bottom: 0%; border: none;" src="https://www.google.com/webhp?igu=1"></iframe>`;
+    document.getElementById(btnid).click();
+}
+
+function opentab(tab, btn){
+    var btns = document.getElementsByClassName("tabs");
+    for(var d = 0; d < btns.length; d++){
+        btns[d].style.borderTop = "none";
+    }
+    btn.style.borderTop = "solid rgb(11, 132, 255)";
+    var divsToHide = document.getElementsByName("tabs");
+    for(var i = 0; i < divsToHide.length; i++){
+        divsToHide[i].style.display = "none";
+    }
+    document.getElementById(tab).style.display = "block";
+}
+
+
 function ddid(what, name){
     if(what == "trash"){
         var xmlll = new XMLHttpRequest();
@@ -430,6 +571,7 @@ setInterval(function(){
     var hrs = time.getHours() - 12;
     var min = time.getMinutes();
     var date = time.getDate();
+    var mon = time.getMonth();
     var darr = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
     if(date < 10){
         date = "0" + date.toString();
@@ -437,7 +579,7 @@ setInterval(function(){
     if(min < 10){
         min = "0" + min.toString();
     }
-    var get = darr[date-1];
+    var get = darr[mon];
     document.getElementById("timing").innerText =  get + " " + date + " " + hrs + ":" + min;
 }, 50)
 
@@ -811,17 +953,40 @@ function apps(app){
             if(document.getElementById("ff")){
 
             }else{
+                //https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe?hl=en
+                //document.body.innerHTML += "<script src='public/style.js'></script>";
+                var browser = detectBrowser()
+                if(browser == "Chrome"){
+                    notifacation("If you don't have this extension installed you may experience trouble with Firefox", "https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe?hl=en")
+                }else if(browser == "Firefox"){
+                    notifacation("If you don't have this extension installed you may experience trouble with Firefox", "https://addons.mozilla.org/en-CA/firefox/addon/ignore-x-frame-options-header/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search")
+                }else{
+                    notifacation("Hmm Firefox might experience some issues because of the browser you are on", "#")
+                }
+                document.body.innerHTML += '<script type="module" src="public/x.js"></script>'
                 document.body.innerHTML += `
                     <div id="ff" class="firefox">
-                        <div class="firefox-tabs">
+                        <div id="tbs" class="firefox-tabs">
                             <div id="bar__buttons">         
-                                <button onclick="document.getElementById('ff').remove()" class="bar__button" id="bar__button--exit">&#10005;</button>            
-                            <button onclick="document.getElementById('ff').style.display = 'none'" class="bar__button">&#9472;</button>                
-                                <button onclick="inc(document.getElementById('ff'))" class="bar__button">&#9723;</button>                   
+                                <button style="margin-top: 1px;" onclick="document.getElementById('ff').remove()" class="bar__button" id="bar__button--exit">&#10005;</button>            
+                            <button style="margin-top: 1px;" onclick="document.getElementById('ff').style.display = 'none'" class="bar__button">&#9472;</button>                
+                                <button style="margin-top: 1px;" onclick="inc(document.getElementById('ff'))" class="bar__button">&#9723;</button>                   
+                            </div>
+                            <button id="maintab" onclick="opentab('ftab', this)" class="tabs"><i onclick="this.parentElement.remove()" style="color: rgb(121, 120, 121); border-radius: 2.5px; cursor: pointer; position: absolute; width: 17px; text-align: center; top: 20%; right: 7.5%; font-family: arial;" class="refresh">&#10005;</i></button>
+                            <button onclick="createtab()" id="ff-create">+</button>
+                        </div>
+                        <div id="ff-content" class="ff-content">
+                            <div class="ff-tab" name="tabs" id="ftab">
+                                <div id="ff-back">
+                                    <input onkeyup="ffenter(this, 'fiframe')" onclick="this.select();" id="ff-inp" class="ff-search" placeholder="Search with google or enter address"/>
+                                    <i onclick="document.getElementById('fiframe').src = document.getElementById('fiframe').src" style="color: rgb(121, 120, 121); border-radius: 2.5px; cursor: pointer; position: absolute; top: 15%; left: 8%;" class="material-icons refresh">refresh</i>
+                                </div>
+                                <iframe onload="document.getElementById('ff-inp').value = this.src" application="yes" is"x-frame-bypass" id="fiframe" class="fiframe" src="https://www.google.com/webhp?igu=1"></iframe>
                             </div>
                         </div>
                     </div>
                 `;
+                document.getElementById("maintab").click()
             }
         }
 

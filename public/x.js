@@ -1,10 +1,14 @@
 customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
+	static get observedAttributes() {
+		return ['src']
+	}
 	constructor () {
 		super()
 	}
-	connectedCallback () {
+	attributeChangedCallback () {
 		this.load(this.src)
-		this.src = ''
+	}
+	connectedCallback () {
 		this.sandbox = '' + this.sandbox || 'allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation' // all except allow-top-navigation
 	}
 	load (url, options) {
@@ -14,6 +18,16 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 		this.srcdoc = `<html>
 <head>
 	<style>
+	.loader {
+		position: absolute;
+		top: calc(50% - 25px);
+		left: calc(50% - 25px);
+		width: 50px;
+		height: 50px;
+		background-color: #333;
+		border-radius: 50%;  
+		animation: loader 1s infinite ease-in-out;
+	}
 	@keyframes loader {
 		0% {
 		transform: scale(0);
@@ -54,17 +68,17 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 		}).catch(e => console.error('Cannot load X-Frame-Bypass:', e))
 	}
 	fetchProxy (url, options, i) {
-		const proxy = [
-			'https://cors.io/?',
-			'https://jsonp.afeld.me/?url=',
-			'https://cors-anywhere.herokuapp.com/'
+		const proxies = (options || {}).proxies || [
+			'https://cors-anywhere.herokuapp.com/',
+			'https://yacdn.org/proxy/',
+			'https://api.codetabs.com/v1/proxy/?quest='
 		]
-		return fetch(proxy[i] + url, options).then(res => {
+		return fetch(proxies[i] + url, options).then(res => {
 			if (!res.ok)
 				throw new Error(`${res.status} ${res.statusText}`);
 			return res
 		}).catch(error => {
-			if (i === proxy.length - 1)
+			if (i === proxies.length - 1)
 				throw error
 			return this.fetchProxy(url, options, i + 1)
 		})
